@@ -229,7 +229,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: PlayerFound
+  - m_Name: isChasing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -377,7 +377,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: PlayerFound
+    m_ConditionEvent: isChasing
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -51001856937927996}
@@ -407,7 +407,7 @@ AnimatorStateMachine:
     m_Position: {x: 370, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 949128056962096178}
-    m_Position: {x: 200, y: 390, z: 0}
+    m_Position: {x: 180, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5283247399728526432}
     m_Position: {x: -80, y: 300, z: 0}
@@ -416,7 +416,7 @@ AnimatorStateMachine:
     m_Position: {x: -80, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -51001856937927996}
-    m_Position: {x: 200, y: 150, z: 0}
+    m_Position: {x: 180, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9082161806281905557}
     m_Position: {x: 530, y: 170, z: 0}
@@ -470,7 +470,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: PlayerFound
+    m_ConditionEvent: isChasing
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7088113387496801049}
@@ -595,7 +595,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: PlayerFound
+    m_ConditionEvent: isChasing
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7088113387496801049}

@@ -30,9 +30,12 @@ public class PlayerControls : MonoBehaviour
     public PanelScript panelScript;
     Inventory inventory;
 
+    public EnemyKilledTargetEvent enemyKilledTargetEvent;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        enemyKilledTargetEvent.Event += KillThePlayer;
         characterController = GetComponent<CharacterController>();
         playerAudioSource = GetComponent<AudioSource>();
         gunControls = GetComponentInChildren<GunControls>();
@@ -42,6 +45,14 @@ public class PlayerControls : MonoBehaviour
         inventory = Inventory.GetInventory();
         inventory.addObserver(panelScript);
     }
+
+    private void KillThePlayer(GameObject value0)
+    {
+        Debug.Log("Enemy killed target event triggered - Test_Event "+value0.name);
+        Destroy(value0);
+    }
+
+   
 
     // Update is called once per frame
     void Update()
@@ -63,6 +74,8 @@ public class PlayerControls : MonoBehaviour
             TakeMedicine();
         }
     }
+
+    private delegate void testDelegate();
 
     /// <summary>
     /// Determines the camera shake based on the player's fear level

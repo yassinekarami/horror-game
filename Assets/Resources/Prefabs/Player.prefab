@@ -690,6 +690,7 @@ MonoBehaviour:
   walkingAudioClip: {fileID: 8300000, guid: e821f1c21c4d7d144a997ef946eaac18, type: 3}
   takingPillsAudioClip: {fileID: 8300000, guid: b6a0cbe042118fc4f8f3b10b1c16347d, type: 3}
   panelScript: {fileID: 0}
+  enemyKilledTargetEvent: {fileID: 11400000, guid: ef9e2c7a6bf4d854382175489848ab57, type: 2}
 --- !u!82 &1938912144138552505
 AudioSource:
   m_ObjectHideFlags: 0
