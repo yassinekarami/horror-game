@@ -297,6 +297,7 @@ MonoBehaviour:
   panelScript: {fileID: 0}
   gunShootAudioClip: {fileID: 8300000, guid: dad3ec2a1891b20458ccd95d6ff135f1, type: 3}
   emptyGunShootAudioClip: {fileID: 8300000, guid: e1254eb21f4498048a6469315bedb3e5, type: 3}
+  enemyIsHitEvent: {fileID: 11400000, guid: f5202b14a22a97b46816ce6c20a3a49c, type: 2}
 --- !u!114 &5931329443214245652
 MonoBehaviour:
   m_ObjectHideFlags: 0

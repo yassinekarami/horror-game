@@ -5,6 +5,7 @@ using Unity.Behavior;
 public enum EnemyState
 {
 	Idle,
+	Hit,
 	Patrol,
 	Chase,
 	Attack

@@ -46,6 +46,10 @@ public class PlayerControls : MonoBehaviour
         inventory.addObserver(panelScript);
     }
 
+    /// <summary>
+    /// Destroys the specified player GameObject and logs the event.
+    /// </summary>
+    /// <param name="value0">The player GameObject to be destroyed.</param>
     private void KillThePlayer(GameObject value0)
     {
         Debug.Log("Enemy killed target event triggered - Test_Event "+value0.name);

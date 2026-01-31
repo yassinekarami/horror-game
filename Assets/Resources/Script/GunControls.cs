@@ -1,7 +1,6 @@
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GunControls : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class GunControls : MonoBehaviour
     public GameObject muzzleFlash;
     public GameObject aimAt;
 
-
+    public GameObject gun;
     public PanelScript panelScript;
     private Inventory inventory;
 
@@ -23,6 +22,8 @@ public class GunControls : MonoBehaviour
     public AudioClip gunShootAudioClip;
     public AudioClip emptyGunShootAudioClip;
 
+    [Header("Event")]
+    public EnemyIsHitEvent enemyIsHitEvent;
 
 
 
@@ -40,6 +41,10 @@ public class GunControls : MonoBehaviour
     private void Update()
     {
         SetUpLaserCrossHair();
+        Ray ray = Camera.main.ScreenPointToRay(
+                new Vector2(Screen.width / 2f, Screen.height / 2f)
+);
+        Debug.DrawRay(ray.origin, ray.direction * 50f, Color.green);
     }
 
     /// <summary>
@@ -47,10 +52,12 @@ public class GunControls : MonoBehaviour
     /// </summary>
     private void SetUpLaserCrossHair()
     {
-        mousePosition = Input.mousePosition;
-        mousePosition.z = 15f;
-        mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        aimAt.transform.position = mouseWorldPosition;
+        //mousePosition = Input.mousePosition;
+        //mousePosition.z = 15f;
+        //mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        //aimAt.transform.position = mouseWorldPosition;
+       
+        aimAt.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 5f));
     }
 
 
@@ -64,11 +71,16 @@ public class GunControls : MonoBehaviour
         if (Inventory.GetInventory().ammunition > 0)
         {
             inventory.updateAmmunitionsByValueAndNotifyObservers(-1);
-            if (Physics.Raycast(transform.position, aimAt.transform.position, out hitInfo, 15f))
-            {
-                if(hitInfo.transform.gameObject.tag.Equals("Enemy"))
+            Ray ray = Camera.main.ScreenPointToRay(
+                new Vector2(Screen.width / 2f, Screen.height / 2f)
+                );
+            if (Physics.Raycast(ray, out hitInfo, 100f))
+            {   Debug.Log("Hit: " + hitInfo.transform.gameObject.name);
+                if (hitInfo.transform.gameObject.tag.Equals("Enemy"))
                 {
                     // enemy was hit
+                    Debug.Log("Enemy hit: " + hitInfo.transform.gameObject.name);
+                    enemyIsHitEvent.SendEventMessage(hitInfo.transform.gameObject, gameObject);
                 }
             }
             PlayAudioClip(gunAudioSource, gunShootAudioClip);
@@ -121,7 +133,6 @@ public class GunControls : MonoBehaviour
     /// </summary>
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, aimAt.transform.position);
+
     }
 }
