@@ -28,7 +28,7 @@ public class PlayerControls : MonoBehaviour
 
 
     public PanelScript panelScript;
-    Inventory inventory;
+    public InventoryScriptableObject inventory;
 
     public EnemyKilledTargetEvent enemyKilledTargetEvent;
 
@@ -42,7 +42,6 @@ public class PlayerControls : MonoBehaviour
         torchControls = GetComponentInChildren<TorchControls>();
         cinemachineBasicMultiChannelPerlin = GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
 
-        inventory = Inventory.GetInventory();
         inventory.addObserver(panelScript);
     }
 
@@ -91,7 +90,7 @@ public class PlayerControls : MonoBehaviour
         float additionalValue = isRunning ? 0.5f : 0;
         // increase fear over time
 
-        inventory.updateFearAndNotifyObservers(Mathf.Clamp(Inventory.GetInventory().fear + Time.deltaTime * 2f, 0f, maxFear));
+        inventory.updateFearAndNotifyObservers(Mathf.Clamp(inventory.fear + Time.deltaTime * 2f, 0f, maxFear));
         if (inventory.fear >= maxFear)
         {
             cinemachineBasicMultiChannelPerlin.AmplitudeGain = 2f;

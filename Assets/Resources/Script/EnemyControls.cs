@@ -2,7 +2,17 @@ using UnityEngine;
 
 public class EnemyControls : MonoBehaviour
 {
-    public float attackRange;
+    public EnemyIsHitEvent enemyIsHitEvent;
+
+    private void Start()
+    {
+        enemyIsHitEvent.Event += EnemyIsHitEvent;
+    }
+
+    private void EnemyIsHitEvent(GameObject value0, GameObject value1)
+    {
+        Debug.Log("enemy is hit event triggered - Test_Event " + value0.name + " hit by " + value1.name);
+    }
 
     /// <summary>
     /// Searches for a GameObject with the tag "Player" within a 10-unit radius of the current transform.
@@ -10,14 +20,14 @@ public class EnemyControls : MonoBehaviour
     /// <returns>The first GameObject with the tag "Player" found within range, or null if none are found.</returns>
     public GameObject DetectedGameObject()
     {
-        Collider[] collider = Physics.OverlapSphere(transform.position, 10f);
-        for (int i = 0; i < collider.Length; i++)
-        {
-            if (collider[i].gameObject.tag == "Player")
-            {
-                return collider[i].gameObject;
-            }
-        }
+        //Collider[] collider = Physics.OverlapSphere(transform.position, detectTargetRange);
+        //for (int i = 0; i < collider.Length; i++)
+        //{
+        //    if (collider[i].gameObject.tag == "Player")
+        //    {   Debug.Log("Player Detected");
+        //        return collider[i].gameObject;
+        //    }
+        //}
         return null;
     }
 
@@ -29,14 +39,18 @@ public class EnemyControls : MonoBehaviour
     public bool IsInAttackRange(GameObject target)
     {
         float distance = Vector3.Distance(transform.position, target.transform.position);
-        return distance <= attackRange;
+        //  return distance <= attackRange;
+        return false;
     }
 
 
     //GIZMO
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+ //       Gizmos.color = Color.red;
+ //       Gizmos.DrawWireSphere(transform.position, attackRange);
+
+ //       Gizmos.color = Color.green;
+ //       Gizmos.DrawWireSphere(transform.position, detectTargetRange);
     }
 }

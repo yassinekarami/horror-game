@@ -4,14 +4,13 @@ using UnityEngine.Rendering;
 public class TorchControls : MonoBehaviour
 {
     Light torchLight;
-    Inventory inventory;
+    public InventoryScriptableObject inventory;
     public PanelScript panelScript;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is create
     void Start()
     {
         torchLight = GetComponentInChildren<Light>();
-        inventory = Inventory.GetInventory();
         inventory.addObserver(panelScript);
     }
 

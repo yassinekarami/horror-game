@@ -8,15 +8,13 @@ public class GunControls : MonoBehaviour
     CinemachineImpulseSource gunImpulseSource;
 
     RaycastHit hitInfo;
-    Vector3 mousePosition;
-    Vector3 mouseWorldPosition;
 
     public GameObject muzzleFlash;
     public GameObject aimAt;
 
     public GameObject gun;
+    public InventoryScriptableObject inventory;
     public PanelScript panelScript;
-    private Inventory inventory;
 
     [Header("Audio clips")]
     public AudioClip gunShootAudioClip;
@@ -32,32 +30,15 @@ public class GunControls : MonoBehaviour
     {
         gunAudioSource = GetComponent<AudioSource>();
         gunImpulseSource = GetComponent<CinemachineImpulseSource>();
-        inventory = Inventory.GetInventory();
         inventory.addObserver(panelScript);
 
         muzzleFlash.SetActive(false);
-    }
 
+    }
     private void Update()
     {
-        SetUpLaserCrossHair();
-        Ray ray = Camera.main.ScreenPointToRay(
-                new Vector2(Screen.width / 2f, Screen.height / 2f)
-);
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
         Debug.DrawRay(ray.origin, ray.direction * 50f, Color.green);
-    }
-
-    /// <summary>
-    /// Move the crosshair following the mouse position
-    /// </summary>
-    private void SetUpLaserCrossHair()
-    {
-        //mousePosition = Input.mousePosition;
-        //mousePosition.z = 15f;
-        //mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        //aimAt.transform.position = mouseWorldPosition;
-       
-        aimAt.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 5f));
     }
 
 
@@ -68,7 +49,7 @@ public class GunControls : MonoBehaviour
     /// </summary>
     public void PlayerShoot()
     {
-        if (Inventory.GetInventory().ammunition > 0)
+        if (inventory.ammunition > 0)
         {
             inventory.updateAmmunitionsByValueAndNotifyObservers(-1);
             Ray ray = Camera.main.ScreenPointToRay(

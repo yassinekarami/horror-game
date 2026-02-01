@@ -1,25 +1,24 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory: IInventoryUpdateSubject
+[CreateAssetMenu(fileName = "InventoryScriptableObject", menuName = "Scriptable Objects/InventoryScriptableObject")]
+public class InventoryScriptableObject : ScriptableObject, IInventoryUpdateSubject
 {
 
     List<IInventoryUpdateObserver> observers = new List<IInventoryUpdateObserver>();
 
-    static Inventory instance;
+    public int ammunition;
+    public int medicine;
+    public float fear;
+    public float torchBattery;
 
-    public int ammunition = 10;
-    public int medicine = 2;
-    public float fear = 0f;
-    public float torchBattery = 100f;
-
-    public static Inventory GetInventory()
+    private void OnEnable()
     {
-        if (instance == null)
-        {
-            instance = new Inventory();
-        }
-        return instance;
+        ammunition = 10;
+        medicine = 2;
+        fear = 0f;
+        torchBattery = 100f;
     }
 
     /// <summary>
@@ -28,7 +27,7 @@ public class Inventory: IInventoryUpdateSubject
     public void updateAmmunitionsByValueAndNotifyObservers(int value)
     {
         this.ammunition = this.ammunition + value;
-        this.notifyAmmunitionsUpdate(observers,  this.ammunition);
+        this.notifyAmmunitionsUpdate(observers, this.ammunition);
     }
 
     /// <summary>
