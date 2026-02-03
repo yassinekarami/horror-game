@@ -119,8 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
   NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 1
-  FrequencyGain: 0.5
+  AmplitudeGain: 2
+  FrequencyGain: 2.5
   m_NoiseOffsets: {x: 743.48, y: -26.611206, z: 187.41599}
 --- !u!114 &1201853884113680888
 MonoBehaviour:
@@ -294,6 +294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunControls
   muzzleFlash: {fileID: 2632724965208904372}
   aimAt: {fileID: 8333685037658711460}
+  gun: {fileID: 4656055888277394098}
+  inventory: {fileID: 11400000, guid: 87a96e3a80d5f024c8567b13dc87de8e, type: 2}
   panelScript: {fileID: 0}
   gunShootAudioClip: {fileID: 8300000, guid: dad3ec2a1891b20458ccd95d6ff135f1, type: 3}
   emptyGunShootAudioClip: {fileID: 8300000, guid: e1254eb21f4498048a6469315bedb3e5, type: 3}
@@ -491,6 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c947cdcedd5e444b94bee8c57bfcb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TorchControls
+  inventory: {fileID: 11400000, guid: 87a96e3a80d5f024c8567b13dc87de8e, type: 2}
   panelScript: {fileID: 0}
 --- !u!1 &4031080519146500102
 GameObject:
@@ -691,6 +694,7 @@ MonoBehaviour:
   walkingAudioClip: {fileID: 8300000, guid: e821f1c21c4d7d144a997ef946eaac18, type: 3}
   takingPillsAudioClip: {fileID: 8300000, guid: b6a0cbe042118fc4f8f3b10b1c16347d, type: 3}
   panelScript: {fileID: 0}
+  inventory: {fileID: 11400000, guid: 87a96e3a80d5f024c8567b13dc87de8e, type: 2}
   enemyKilledTargetEvent: {fileID: 11400000, guid: ef9e2c7a6bf4d854382175489848ab57, type: 2}
 --- !u!82 &1938912144138552505
 AudioSource:
@@ -807,7 +811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3951359940473972595
 Transform:
   m_ObjectHideFlags: 0
@@ -1048,6 +1052,11 @@ Transform:
 --- !u!4 &4650672137308579320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4827498857130004, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+  m_PrefabInstance: {fileID: 4655498526923279852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4656055888277394098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1694449805434718, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
   m_PrefabInstance: {fileID: 4655498526923279852}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4754965610934673250

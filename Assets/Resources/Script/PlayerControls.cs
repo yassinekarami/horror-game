@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
+    [Header("Components")]
     CharacterController characterController;
     AudioSource playerAudioSource;
     GunControls gunControls;
+    GameObject cameraHolder;
+    GameObject gunHolder;
     TorchControls torchControls;
     CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin;
 
@@ -29,19 +32,23 @@ public class PlayerControls : MonoBehaviour
 
     public PanelScript panelScript;
     public InventoryScriptableObject inventory;
-
+    [Header("Event")]
     public EnemyKilledTargetEvent enemyKilledTargetEvent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        enemyKilledTargetEvent.Event += KillThePlayer;
+        cameraHolder = GameObject.Find("CameraHolder");
+        gunHolder = GameObject.Find("GunHolder");
+
         characterController = GetComponent<CharacterController>();
         playerAudioSource = GetComponent<AudioSource>();
-        gunControls = GetComponentInChildren<GunControls>();
+
+        gunControls = gunHolder.GetComponent<GunControls>();
         torchControls = GetComponentInChildren<TorchControls>();
         cinemachineBasicMultiChannelPerlin = GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
 
+        enemyKilledTargetEvent.Event += KillThePlayer;
         inventory.addObserver(panelScript);
     }
 
@@ -62,6 +69,7 @@ public class PlayerControls : MonoBehaviour
     {
         characterController.Move(GetMovementDirection(out isMoving) * GetCurrentSpeed(out isRunning) * Time.deltaTime);
         RotatePlayer();
+        LookUpAndDown();
         PlayMovementAudio(isMoving);
         UpdateCameraPerlinAmplitudeAndFrequency(isRunning);
         if (Input.GetMouseButtonDown(0))
@@ -77,8 +85,6 @@ public class PlayerControls : MonoBehaviour
             TakeMedicine();
         }
     }
-
-    private delegate void testDelegate();
 
     /// <summary>
     /// Determines the camera shake based on the player's fear level
@@ -116,6 +122,9 @@ public class PlayerControls : MonoBehaviour
         gunControls.PlayerShoot();
     }
 
+    /// <summary>
+    /// Toggles the state of the torch using torchControls.
+    /// </summary>
     private void ToggleTorch()
     {
         torchControls.ToggleTorch();
@@ -151,10 +160,30 @@ public class PlayerControls : MonoBehaviour
         return transform.TransformDirection(moveDirection.normalized);
     }
 
+    /// <summary>
+    /// Rotates the player horizontally based on mouse X-axis input.
+    /// </summary>
     private void RotatePlayer()
     {
         float mouseX = Input.GetAxis("Mouse X") * 5f * 100f * Time.deltaTime;
         transform.Rotate(Vector3.up * mouseX);
+    }
+
+    /// <summary>
+    /// Performs look up and down operations.
+    /// </summary>
+    private void LookUpAndDown()
+    {
+        float mouseY = Input.GetAxis("Mouse Y") * 5f * 100f * Time.deltaTime;
+        cameraHolder.transform.Rotate(Vector3.left * mouseY);
+        gunHolder.transform.Rotate(Vector3.left * mouseY);
+    }
+    /// <summary>
+    /// Unsubscribes the KillThePlayer handler from the enemyKilledTargetEvent when the object is destroyed.
+    /// </summary>
+    private void OnDestroy()
+    {
+        enemyKilledTargetEvent.Event -= KillThePlayer;
     }
 
     /// <summary>

@@ -61,7 +61,7 @@ public class GunControls : MonoBehaviour
                 {
                     // enemy was hit
                     Debug.Log("Enemy hit: " + hitInfo.transform.gameObject.name);
-                    enemyIsHitEvent.SendEventMessage(hitInfo.transform.gameObject, gameObject);
+                    enemyIsHitEvent.SendEventMessage(hitInfo.transform.gameObject);
                 }
             }
             PlayAudioClip(gunAudioSource, gunShootAudioClip);

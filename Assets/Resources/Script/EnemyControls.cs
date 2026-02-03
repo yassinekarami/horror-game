@@ -9,9 +9,9 @@ public class EnemyControls : MonoBehaviour
         enemyIsHitEvent.Event += EnemyIsHitEvent;
     }
 
-    private void EnemyIsHitEvent(GameObject value0, GameObject value1)
+    private void EnemyIsHitEvent(GameObject value0)
     {
-        Debug.Log("enemy is hit event triggered - Test_Event " + value0.name + " hit by " + value1.name);
+        Debug.Log("enemy is hit event triggered - Test_Event " + value0.name + " hit by ");
     }
 
     /// <summary>
