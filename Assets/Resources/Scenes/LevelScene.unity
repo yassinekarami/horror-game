@@ -3517,6 +3517,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4495337902505916466, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
+      propertyPath: AmplitudeGain
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495337902505916466, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
+      propertyPath: FrequencyGain
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5252867486705322070, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.08
@@ -6485,11 +6493,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5638052790497274910, guid: 06f2c6817f1194a4f819773b5a654b80, type: 3}
   m_PrefabInstance: {fileID: 3292416990885036508}
   m_PrefabAsset: {fileID: 0}
---- !u!108 &1638125897 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 4760655965009501902, guid: 06f2c6817f1194a4f819773b5a654b80, type: 3}
-  m_PrefabInstance: {fileID: 3292416990885036508}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1651390919 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 164670, guid: b826295956c65444987d7baae67c5858, type: 3}
@@ -7088,10 +7091,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.VisualScripting.Core::Unity.VisualScripting.Variables
   _data:
-    _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[{"name":"lamp","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.Light,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences:
-    - {fileID: 1638125897}
+    _json: '{"declarations":{"Kind":"Scene","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
 --- !u!4 &1801271298
 Transform:
   m_ObjectHideFlags: 0
@@ -8073,7 +8074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2003469722
 Transform:
   m_ObjectHideFlags: 0
@@ -9028,7 +9029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5270941372388427428, guid: 3cb44bd69cc294d40b0bc9346bd8f9f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -27.4
+      value: -23.12
       objectReference: {fileID: 0}
     - target: {fileID: 5270941372388427428, guid: 3cb44bd69cc294d40b0bc9346bd8f9f5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9077,7 +9078,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5638052790497274910, guid: 06f2c6817f1194a4f819773b5a654b80, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.09
+      value: -18.72
       objectReference: {fileID: 0}
     - target: {fileID: 5638052790497274910, guid: 06f2c6817f1194a4f819773b5a654b80, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9085,7 +9086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5638052790497274910, guid: 06f2c6817f1194a4f819773b5a654b80, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.5
+      value: -28.89
       objectReference: {fileID: 0}
     - target: {fileID: 5638052790497274910, guid: 06f2c6817f1194a4f819773b5a654b80, type: 3}
       propertyPath: m_LocalRotation.w
