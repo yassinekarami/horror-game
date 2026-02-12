@@ -34,6 +34,7 @@ public class PlayerControls : MonoBehaviour
     public InventoryScriptableObject inventory;
     [Header("Event")]
     public EnemyKilledTargetEvent enemyKilledTargetEvent;
+    public LampExplodeAtPositionEvent lampExplodeEventChanel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,6 +50,7 @@ public class PlayerControls : MonoBehaviour
         cinemachineBasicMultiChannelPerlin = GetComponentInChildren<CinemachineBasicMultiChannelPerlin>();
 
         enemyKilledTargetEvent.Event += KillThePlayer;
+        lampExplodeEventChanel.Event += OnLampExplode;
         inventory.addObserver(panelScript);
     }
 
@@ -62,7 +64,17 @@ public class PlayerControls : MonoBehaviour
         Destroy(value0);
     }
 
-   
+
+    private void OnLampExplode(Vector3 position)
+    {
+        Debug.Log("Lamp explode event triggered - Test_Event");
+        Debug.Log("Current fear " + inventory.fear);
+
+            
+        inventory.updateFearAndNotifyObservers(Mathf.Clamp(inventory.fear + 20f, 0f, maxFear));
+        Debug.Log("Updated fear " + inventory.fear);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -96,7 +108,7 @@ public class PlayerControls : MonoBehaviour
         float additionalValue = isRunning ? 0.5f : 0;
         // increase fear over time
 
-        inventory.updateFearAndNotifyObservers(Mathf.Clamp(inventory.fear + Time.deltaTime * 2f, 0f, maxFear));
+        inventory.updateFearAndNotifyObservers(Mathf.Clamp((inventory.fear + Time.deltaTime), 0f, maxFear));
         if (inventory.fear >= maxFear)
         {
             cinemachineBasicMultiChannelPerlin.AmplitudeGain = 2f;
@@ -184,6 +196,7 @@ public class PlayerControls : MonoBehaviour
     private void OnDestroy()
     {
         enemyKilledTargetEvent.Event -= KillThePlayer;
+        lampExplodeEventChanel.Event -= OnLampExplode;
     }
 
     /// <summary>

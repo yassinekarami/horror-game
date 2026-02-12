@@ -15,12 +15,13 @@ GameObject:
   - component: {fileID: 6160971062180528845}
   - component: {fileID: 1170546906750410093}
   - component: {fileID: 7911413593894909665}
+  - component: {fileID: 6399358930626751214}
   m_Layer: 0
   m_Name: LampExplode
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5638052790497274910
 Transform:
@@ -144,8 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.VisualScripting.Core::Unity.VisualScripting.Variables
   _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"genericEventBroadcaster","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"GenericEventBroadcaster,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 6399358930626751214}
 --- !u!114 &6160971062180528845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,3 +283,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6399358930626751214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8562410396813929206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77305a94b48da54895efd7d94e8617d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GenericEventBroadcaster
+  eventChannel: {fileID: 11400000, guid: afb9ff46bde4fc443a478ff6062a5180, type: 2}

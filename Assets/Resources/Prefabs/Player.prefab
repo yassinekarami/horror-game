@@ -119,8 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
   NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 1
-  FrequencyGain: 0.5
+  AmplitudeGain: 1.5
+  FrequencyGain: 1
   m_NoiseOffsets: {x: 743.48, y: -26.611206, z: 187.41599}
 --- !u!114 &1201853884113680888
 MonoBehaviour:
@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c947cdcedd5e444b94bee8c57bfcb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TorchControls
-  inventory: {fileID: 11400000, guid: 87a96e3a80d5f024c8567b13dc87de8e, type: 2}
+  inventory: {fileID: 11400000, guid: fcfedbc7457663a4e98792842888093e, type: 2}
   panelScript: {fileID: 0}
 --- !u!1 &4031080519146500102
 GameObject:
@@ -694,8 +694,9 @@ MonoBehaviour:
   walkingAudioClip: {fileID: 8300000, guid: e821f1c21c4d7d144a997ef946eaac18, type: 3}
   takingPillsAudioClip: {fileID: 8300000, guid: b6a0cbe042118fc4f8f3b10b1c16347d, type: 3}
   panelScript: {fileID: 0}
-  inventory: {fileID: 11400000, guid: 87a96e3a80d5f024c8567b13dc87de8e, type: 2}
+  inventory: {fileID: 11400000, guid: fcfedbc7457663a4e98792842888093e, type: 2}
   enemyKilledTargetEvent: {fileID: 11400000, guid: ef9e2c7a6bf4d854382175489848ab57, type: 2}
+  lampExplodeEventChanel: {fileID: 11400000, guid: afb9ff46bde4fc443a478ff6062a5180, type: 2}
 --- !u!82 &1938912144138552505
 AudioSource:
   m_ObjectHideFlags: 0

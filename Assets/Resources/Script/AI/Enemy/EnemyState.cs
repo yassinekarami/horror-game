@@ -8,5 +8,6 @@ public enum EnemyState
 	Hit,
 	Patrol,
 	Chase,
-	Attack
+	Attack,
+	Trigger
 }

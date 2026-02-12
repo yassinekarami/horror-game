@@ -3074,7 +3074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7654a88ca82dc994784ac854e7f405c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PanelScript
-  inventory: {fileID: 11400000, guid: 87a96e3a80d5f024c8567b13dc87de8e, type: 2}
+  inventory: {fileID: 11400000, guid: fcfedbc7457663a4e98792842888093e, type: 2}
   medicineText: {fileID: 1606221179}
   fearText: {fileID: 383857066}
   ammunitionText: {fileID: 317273413}
@@ -3519,11 +3519,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4495337902505916466, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
       propertyPath: AmplitudeGain
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4495337902505916466, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
       propertyPath: FrequencyGain
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5252867486705322070, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3570,6 +3570,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 753177662}
     - target: {fileID: 6119423154133136141, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 11400000, guid: fcfedbc7457663a4e98792842888093e, type: 2}
+    - target: {fileID: 6119423154133136141, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
       propertyPath: panelScript
       value: 
       objectReference: {fileID: 753177662}
@@ -3577,6 +3581,10 @@ PrefabInstance:
       propertyPath: panelScript
       value: 
       objectReference: {fileID: 753177662}
+    - target: {fileID: 6615391338846005432, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
+      propertyPath: lampExplodeEventChanel
+      value: 
+      objectReference: {fileID: 11400000, guid: 45c70b3f8330ee84782f768fed5b22fc, type: 2}
     - target: {fileID: 6734462355701445951, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -8955,9 +8963,38 @@ PrefabInstance:
     m_TransformParent: {fileID: 2003469722}
     m_Modifications:
     - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: 'managedReferences[2166597806096646477]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[LampExplodeAtPositionEvent,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: managedReferences[2166597806096646477].Name
+      value: LampExplodeAtPositionEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: m_BlackboardVariableOverridesList.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
       propertyPath: managedReferences[1678998957942636916].m_Value
       value: 
       objectReference: {fileID: 871924604}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: managedReferences[2166597806096646477].m_Value
+      value: 
+      objectReference: {fileID: 11400000, guid: 45c70b3f8330ee84782f768fed5b22fc, type: 2}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[11]'
+      value: 2166597806096646477
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: managedReferences[2166597806096646477].GUID.m_Value0
+      value: 1403323917550685034
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: managedReferences[2166597806096646477].GUID.m_Value1
+      value: 4423119837183123923
+      objectReference: {fileID: 0}
     - target: {fileID: 7100623381843806907, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
       propertyPath: m_Volume
       value: 0.055
@@ -9116,6 +9153,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6399358930626751214, guid: 06f2c6817f1194a4f819773b5a654b80, type: 3}
+      propertyPath: eventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 45c70b3f8330ee84782f768fed5b22fc, type: 2}
     - target: {fileID: 8562410396813929206, guid: 06f2c6817f1194a4f819773b5a654b80, type: 3}
       propertyPath: m_Name
       value: LampExplode

@@ -3,15 +3,29 @@ using UnityEngine;
 public class EnemyControls : MonoBehaviour
 {
     public EnemyIsHitEvent enemyIsHitEvent;
+    public LampExplodeAtPositionEvent lampExplodeAtPositionEvent;
 
+    public Vector3 heardSoundPosition;
     private void Start()
     {
         enemyIsHitEvent.Event += EnemyIsHitEvent;
+        lampExplodeAtPositionEvent.Event += OnLampExplode;
     }
 
+    private void OnDestroy()
+    {
+        enemyIsHitEvent.Event -= EnemyIsHitEvent;
+        lampExplodeAtPositionEvent.Event -= OnLampExplode;  
+    }
     private void EnemyIsHitEvent(GameObject value0)
     {
         Debug.Log("enemy is hit event triggered - Test_Event " + value0.name + " hit by ");
+    }
+
+    private void OnLampExplode(Vector3 position)
+    {
+        Debug.Log("Enemy received lamp explode event - Test_Event " + position);
+        heardSoundPosition = position;
     }
 
     /// <summary>
