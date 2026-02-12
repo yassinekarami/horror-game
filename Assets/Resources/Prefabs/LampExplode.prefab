@@ -145,10 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.VisualScripting.Core::Unity.VisualScripting.Variables
   _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"genericEventBroadcaster","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"GenericEventBroadcaster,
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"genericEventBroadcaster","value":{"$type":"Unity.VisualScripting.Unknown"},"typeHandle":{"Identification":"GenericEventBroadcaster,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences:
-    - {fileID: 6399358930626751214}
+    _objectReferences: []
 --- !u!114 &6160971062180528845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,4 +294,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a77305a94b48da54895efd7d94e8617d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GenericEventBroadcaster
-  eventChannel: {fileID: 11400000, guid: afb9ff46bde4fc443a478ff6062a5180, type: 2}
+  eventChannel: {fileID: 11400000, guid: 45c70b3f8330ee84782f768fed5b22fc, type: 2}

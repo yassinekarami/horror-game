@@ -76,6 +76,11 @@ PrefabInstance:
         UnityEngine.AudioModule]]'
       objectReference: {fileID: 0}
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: 'managedReferences[2166597806096646477]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[LampExplodeAtPositionEvent,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: managedReferences[1678998866817974719].Name
       value: EnemyKilledTargetEvent
       objectReference: {fileID: 0}
@@ -124,8 +129,12 @@ PrefabInstance:
       value: AudioSource
       objectReference: {fileID: 0}
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597806096646477].Name
+      value: LampExplodeAtPositionEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: managedReferences[1678998817723908661].m_Value
@@ -180,6 +189,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7100623381843806907}
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597806096646477].m_Value
+      value: 
+      objectReference: {fileID: 11400000, guid: 45c70b3f8330ee84782f768fed5b22fc, type: 2}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: 'm_BlackboardVariableOverridesList.Array.data[1]'
       value: 1678998957674726168
       objectReference: {fileID: 0}
@@ -218,6 +231,10 @@ PrefabInstance:
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: 'm_BlackboardVariableOverridesList.Array.data[10]'
       value: 2166597596681339158
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[11]'
+      value: 2166597806096646477
       objectReference: {fileID: 0}
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: managedReferences[1678998866817974719].GUID.m_Value0
@@ -315,6 +332,14 @@ PrefabInstance:
       propertyPath: managedReferences[2166597596681339158].GUID.m_Value1
       value: 13870125142101876423
       objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597806096646477].GUID.m_Value0
+      value: 1403323917550685034
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597806096646477].GUID.m_Value1
+      value: 4423119837183123923
+      objectReference: {fileID: 0}
     - target: {fileID: 1760679023758453637, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: attackRange
       value: 1.8
@@ -327,6 +352,10 @@ PrefabInstance:
       propertyPath: detectTargetRange
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1760679023758453637, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: lampExplodeAtPositionEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 45c70b3f8330ee84782f768fed5b22fc, type: 2}
     - target: {fileID: 3490026887102114920, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -475,7 +504,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.055
   m_Pitch: 1
   Loop: 0
   Mute: 0

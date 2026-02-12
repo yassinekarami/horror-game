@@ -3,18 +3,18 @@ using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
+using UnityEngine.AI;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "EnemyHearSoundAction", story: "[Self] hear sound at [position]", category: "Action", id: "b107502d916bff83ec2f02abe1031970")]
+[NodeDescription(name: "EnemyHearSoundAction", story: "[Controls] hear sound at [position]", category: "Action", id: "b107502d916bff83ec2f02abe1031970")]
 public partial class EnemyHearSoundAction : Action
 {
-    [SerializeReference] public BlackboardVariable<GameObject> Self;
+    [SerializeReference] public BlackboardVariable<EnemyControls> Controls;
     [SerializeReference] public BlackboardVariable<Transform> Position;
-
     protected override Status OnStart()
     {
-        Position.Value.position = Self.Value.GetComponent<EnemyControls>().heardSoundPosition;
-        Vector3 selfPosition = Self.Value.transform.position;
+        Position.Value.position = Controls.Value.heardSoundPosition;
+        Vector3 selfPosition = Controls.Value.transform.position;
         Debug.Log("distance between enemy and heard sound "+Vector3.Distance(selfPosition, Position.Value.position));
         if (Vector3.Distance(selfPosition, Position.Value.position) < 0.1f)
         {
@@ -25,6 +25,8 @@ public partial class EnemyHearSoundAction : Action
 
     protected override Status OnUpdate()
     {
+         Position.Value.position = Controls.Value.heardSoundPosition;
+        Vector3 selfPosition = Controls.Value.transform.position;
         return Status.Success;
     }
 
