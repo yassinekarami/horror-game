@@ -3517,6 +3517,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4495337902505916466, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
+      propertyPath: AmplitudeGain
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495337902505916466, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
+      propertyPath: FrequencyGain
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5252867486705322070, guid: 60d236fd38287e445b4e6bfbad7ce07e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.08
@@ -8969,16 +8977,41 @@ PrefabInstance:
     m_TransformParent: {fileID: 2003469722}
     m_Modifications:
     - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: 'managedReferences[2166597908838220562]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.Transform,
+        UnityEngine.CoreModule]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: managedReferences[2166597908838220562].Name
+      value: HeardSoundAtPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: m_BlackboardVariableOverridesList.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
       propertyPath: managedReferences[1678998957942636916].m_Value
       value: 
       objectReference: {fileID: 871924604}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: managedReferences[2166597908838220562].m_Value
+      value: 
+      objectReference: {fileID: 736083127}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[12]'
+      value: 2166597908838220562
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: managedReferences[2166597908838220562].GUID.m_Value0
+      value: 14788939185037688944
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080832879253356955, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
+      propertyPath: managedReferences[2166597908838220562].GUID.m_Value1
+      value: 10398599041973970238
+      objectReference: {fileID: 0}
     - target: {fileID: 8250650465537279472, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8250650465537279472, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8250650465537448400, guid: c25eef9a6d4bacd4a9c87e3dd1ee8508, type: 3}
       propertyPath: m_LocalPosition.x

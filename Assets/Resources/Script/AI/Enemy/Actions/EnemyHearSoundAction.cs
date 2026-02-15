@@ -13,20 +13,19 @@ public partial class EnemyHearSoundAction : Action
     [SerializeReference] public BlackboardVariable<Transform> Position;
     protected override Status OnStart()
     {
-        Position.Value.position = Controls.Value.heardSoundPosition;
-        Vector3 selfPosition = Controls.Value.transform.position;
-        Debug.Log("distance between enemy and heard sound "+Vector3.Distance(selfPosition, Position.Value.position));
-        if (Vector3.Distance(selfPosition, Position.Value.position) < 0.1f)
-        {
-            return Status.Success;
-        }
+        //Position.Value.position = Controls.Value.heardSoundPosition;
+        //Debug.Log("onStart positionValue " + Position.Value.position);
+        //Vector3 selfPosition = Controls.Value.transform.position;
+        //Debug.Log("distance between enemy and heard sound "+Vector3.Distance(selfPosition, Position.Value.position));
+        //if (Vector3.Distance(selfPosition, Position.Value.position) < 0.1f)
+        //{
+        //    return Status.Success;
+        //}
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-         Position.Value.position = Controls.Value.heardSoundPosition;
-        Vector3 selfPosition = Controls.Value.transform.position;
         return Status.Success;
     }
 

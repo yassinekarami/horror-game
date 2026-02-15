@@ -1,21 +1,35 @@
+using Unity.Behavior;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class EnemyControls : MonoBehaviour
 {
     public EnemyIsHitEvent enemyIsHitEvent;
     public LampExplodeAtPositionEvent lampExplodeAtPositionEvent;
 
-    public Vector3 heardSoundPosition;
+    [SerializeField] private BehaviorGraphAgent graphAgent;
+    private BlackboardVariable<NavMeshAgent> navMeshAgent;
+
     private void Start()
     {
+        graphAgent = GetComponent<BehaviorGraphAgent>();
+
+        if (graphAgent.GetVariable("NavMeshAgent", out navMeshAgent)) {
+            lampExplodeAtPositionEvent.Event += OnLampExplode;
+        }
         enemyIsHitEvent.Event += EnemyIsHitEvent;
-        lampExplodeAtPositionEvent.Event += OnLampExplode;
+   
     }
 
     private void OnDestroy()
     {
         enemyIsHitEvent.Event -= EnemyIsHitEvent;
-        lampExplodeAtPositionEvent.Event -= OnLampExplode;  
+        if(navMeshAgent != null)
+        {
+            lampExplodeAtPositionEvent.Event -= OnLampExplode;
+        }
+ 
     }
     private void EnemyIsHitEvent(GameObject value0)
     {
@@ -24,8 +38,9 @@ public class EnemyControls : MonoBehaviour
 
     private void OnLampExplode(Vector3 position)
     {
-        Debug.Log("Enemy received lamp explode event - Test_Event " + position);
-        heardSoundPosition = position;
+        Debug.Log("Enemy received lamp explode event  " + position);
+        navMeshAgent.Value.SetDestination(position);
+
     }
 
     /// <summary>
