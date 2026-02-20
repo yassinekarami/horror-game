@@ -3,20 +3,52 @@ using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
+using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "EnemyPatrolAction", story: "Check if [Target] is returned by [Controls] and update [State]", category: "Action", id: "2203d00b4485e206c7925cc0a244d61d")]
+[NodeDescription(name: "EnemyPatrolAction", story: "[NavMesh] patrols and [audio] play [sounds] and wait when all [waypoints] has been visited", category: "Action", id: "2203d00b4485e206c7925cc0a244d61d")]
 public partial class EnemyPatrolAction : Action
 {
-    [SerializeReference] public BlackboardVariable<GameObject> Target;
-    [SerializeReference] public BlackboardVariable<EnemyControls> Controls;
-    [SerializeReference] public BlackboardVariable<EnemyState> State;
+    [SerializeReference] public BlackboardVariable<UnityEngine.AI.NavMeshAgent> NavMesh;
+    [SerializeReference] public BlackboardVariable<AudioSource> Audio;
+    [SerializeReference] public BlackboardVariable<ScriptableObject> Sounds;
+    [SerializeReference] public BlackboardVariable<List<GameObject>> Waypoints;
     protected override Status OnUpdate()
     {
-        Target.Value = Controls.Value.DetectedGameObject();
-        Debug.Log("Patrol Action: " + (Target.Value == null ? "No Target" : "Target Acquired "+Target.Name));
-        State.Value = Target.Value == null ? EnemyState.Patrol : EnemyState.Chase;
-        return Target == null ? Status.Failure : Status.Success;
+  
+        SoundsScriptableObject sound = (Sounds.Value as SoundsScriptableObject);
+        sound.PlayRandomAudioClip(Audio.Value);
+
+        bool patrol = Patrols();
+
+
+        return patrol ? Status.Success : Status.Failure ;
+    }
+
+    private bool Patrols()
+    {
+        
+        if (NavMesh != null && Waypoints.Value != null && Waypoints.Value.Count > 0)
+        {
+      
+            List<GameObject> waypoints = Waypoints.Value;
+            Vector3 currentNavMeshDestination = NavMesh.Value.destination;
+            Vector3 newNavMeshDestination ;
+            do
+            {
+                newNavMeshDestination = waypoints[Random.Range(0, waypoints.Count - 1)].transform.position;
+            } 
+            while (currentNavMeshDestination == newNavMeshDestination);
+
+            NavMesh.Value.SetDestination(newNavMeshDestination);
+            if (NavMesh.Value.remainingDistance <= NavMesh.Value.stoppingDistance)
+            {
+                return true;
+            }
+        }        
+        return false;
+
     }
 }
 

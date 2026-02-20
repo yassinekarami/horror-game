@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class PlayerControls : MonoBehaviour
     GunControls gunControls;
     GameObject cameraHolder;
     GameObject gunHolder;
+    GameObject torchHolder;
     TorchControls torchControls;
     CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin;
 
@@ -25,9 +27,7 @@ public class PlayerControls : MonoBehaviour
 
 
     [Header("Audio clips")]
-    public AudioClip runningAudioClip;
-    public AudioClip walkingAudioClip;
-    public AudioClip takingPillsAudioClip;
+    public SoundsScriptableObject sounds;
 
 
     public PanelScript panelScript;
@@ -41,7 +41,7 @@ public class PlayerControls : MonoBehaviour
     {
         cameraHolder = GameObject.Find("CameraHolder");
         gunHolder = GameObject.Find("GunHolder");
-
+        torchHolder = GameObject.Find("TorchHolder");
         characterController = GetComponent<CharacterController>();
         playerAudioSource = GetComponent<AudioSource>();
 
@@ -61,6 +61,14 @@ public class PlayerControls : MonoBehaviour
     private void KillThePlayer(GameObject value0)
     {
         Debug.Log("Enemy killed target event triggered - Test_Event "+value0.name);
+        StartCoroutine(PlayerIsDead(value0));
+    }
+
+    IEnumerator PlayerIsDead(GameObject value0) 
+    {
+        AudioClip audioToPlay = sounds.GetAudioClipAtIndex(3);
+        sounds.PlayAudioClip(playerAudioSource, audioToPlay);
+        yield return new WaitForSeconds(audioToPlay.length +1);
         Destroy(value0);
     }
 
@@ -149,7 +157,7 @@ public class PlayerControls : MonoBehaviour
         if (inventory.medicine > 0)
         {
             inventory.updateMedicineByValueAndNotifyObservers(-1);
-            PlayAudioClip(playerAudioSource, takingPillsAudioClip);
+            sounds.PlayAudioClipAtIndex(playerAudioSource, 2);
             inventory.updateFearByValueAndNotifyObservers(-30f);
         }
     }
@@ -189,6 +197,7 @@ public class PlayerControls : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * 5f * 100f * Time.deltaTime;
         cameraHolder.transform.Rotate(Vector3.left * mouseY);
         gunHolder.transform.Rotate(Vector3.left * mouseY);
+        torchHolder.transform.Rotate(Vector3.left * mouseY);
     }
     /// <summary>
     /// Unsubscribes the KillThePlayer handler from the enemyKilledTargetEvent when the object is destroyed.
@@ -211,20 +220,6 @@ public class PlayerControls : MonoBehaviour
 
 
     /// <summary>
-    /// plays the given audio clip on the given audio source if it is not already playing
-    /// </summary>
-    /// <param name="audioSource"></param>
-    /// <param name="clip"></param>
-    private void PlayAudioClip(AudioSource audioSource,  AudioClip clip)
-    {
-        if (audioSource == null || clip == null) return;
-        if (audioSource.clip == clip && audioSource.isPlaying)
-            return;
-        audioSource.clip = clip;
-        audioSource.Play();
-    }
-
-    /// <summary>
     /// plays movement audio based on whether the player is moving and if they are running or walking
     /// </summary>
     /// <param name="isMoving"></param>
@@ -233,11 +228,11 @@ public class PlayerControls : MonoBehaviour
         if (playerAudioSource == null || !isMoving) return;
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            PlayAudioClip(playerAudioSource, runningAudioClip);
+            sounds.PlayAudioClipAtIndex(playerAudioSource, 0);
         }
         else
         {
-            PlayAudioClip(playerAudioSource, walkingAudioClip);
+            sounds.PlayAudioClipAtIndex(playerAudioSource, 1);
         }
     }
 

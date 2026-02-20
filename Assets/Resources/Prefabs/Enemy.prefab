@@ -81,6 +81,16 @@ PrefabInstance:
         Assembly-CSharp]]'
       objectReference: {fileID: 0}
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: 'managedReferences[2166597909658207037]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[PlayerShotAtPositionEvent,
+        Assembly-CSharp]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: 'managedReferences[2166597910079210477]'
+      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[System.Collections.Generic.List`1[[UnityEngine.GameObject,
+        UnityEngine.CoreModule]], mscorlib]]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: managedReferences[1678998866817974719].Name
       value: EnemyKilledTargetEvent
       objectReference: {fileID: 0}
@@ -133,8 +143,16 @@ PrefabInstance:
       value: LampExplodeAtPositionEvent
       objectReference: {fileID: 0}
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597909658207037].Name
+      value: PlayerShotAtPositionEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597910079210477].Name
+      value: PatrolPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 12
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: managedReferences[1678998817723908661].m_Value
@@ -193,6 +211,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 45c70b3f8330ee84782f768fed5b22fc, type: 2}
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597909658207037].m_Value
+      value: 
+      objectReference: {fileID: 11400000, guid: 052b65b578e9bb34fbc8112a84f73805, type: 2}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: 'm_BlackboardVariableOverridesList.Array.data[1]'
       value: 1678998957674726168
       objectReference: {fileID: 0}
@@ -235,6 +257,14 @@ PrefabInstance:
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: 'm_BlackboardVariableOverridesList.Array.data[11]'
       value: 2166597806096646477
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[12]'
+      value: 2166597909658207037
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[13]'
+      value: 2166597910079210477
       objectReference: {fileID: 0}
     - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: managedReferences[1678998866817974719].GUID.m_Value0
@@ -340,6 +370,34 @@ PrefabInstance:
       propertyPath: managedReferences[2166597806096646477].GUID.m_Value1
       value: 4423119837183123923
       objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597909658207037].GUID.m_Value0
+      value: 1982927628653785903
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597909658207037].GUID.m_Value1
+      value: 13019214861601248602
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597910079210477].GUID.m_Value0
+      value: 11390149468449174461
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597910079210477].GUID.m_Value1
+      value: 7206344303595108319
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: managedReferences[2166597910079210477].m_Value.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: 'managedReferences[2166597910079210477].m_Value.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1624769623329335299, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: 'managedReferences[2166597910079210477].m_Value.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1760679023758453637, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: attackRange
       value: 1.8
@@ -352,6 +410,10 @@ PrefabInstance:
       propertyPath: detectTargetRange
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1760679023758453637, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: playerShotAtPositionEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 052b65b578e9bb34fbc8112a84f73805, type: 2}
     - target: {fileID: 1760679023758453637, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: lampExplodeAtPositionEvent
       value: 
@@ -366,15 +428,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.2079703
+      value: 1.7946181
       objectReference: {fileID: 0}
     - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.2079703
+      value: 1.7946181
       objectReference: {fileID: 0}
     - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.2079703
+      value: 1.7946181
       objectReference: {fileID: 0}
     - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -382,7 +444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.65
+      value: -1.2366
       objectReference: {fileID: 0}
     - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -479,7 +541,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

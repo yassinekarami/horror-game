@@ -119,8 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
   NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 1
-  FrequencyGain: 0.5
+  AmplitudeGain: 1.5
+  FrequencyGain: 1
   m_NoiseOffsets: {x: 743.48, y: -26.611206, z: 187.41599}
 --- !u!114 &1201853884113680888
 MonoBehaviour:
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 720079949829213541}
   - component: {fileID: 5788336658517728339}
   m_Layer: 0
-  m_Name: Torch
+  m_Name: TorchHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

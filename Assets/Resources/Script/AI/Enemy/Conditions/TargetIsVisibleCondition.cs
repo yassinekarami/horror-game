@@ -1,5 +1,6 @@
 using System;
 using Unity.Behavior;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable, Unity.Properties.GeneratePropertyBag]
@@ -9,21 +10,37 @@ public partial class TargetIsVisibleCondition : Condition
     [SerializeReference] public BlackboardVariable<GameObject> Target;
     [SerializeReference] public BlackboardVariable<GameObject> Self;
 
+
     public override bool IsTrue()
     {
+     //   Debug.Log("Target "+ Target.Value.transform.position);
+     //   Debug.Log("Self " + Self.Value.transform.position);
+        bool result = false;
         Ray ray = new Ray(Self.Value.transform.position, Target.Value.transform.position - Self.Value.transform.position);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
-        {   Debug.Log(hitInfo.collider.gameObject.name);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 2))
+        {
+        
             if (hitInfo.collider.gameObject != Target.Value)
             {
-                return false;
+                result = false;
+            }
+            else
+            {
+                Debug.Log("detected gameObject " + hitInfo.collider.gameObject.name);
+                result = true;
             }
         }
-        return true;
-    }
 
+    //    Debug.Log("TargetIsVisibleCondition result: " + result);    
+        return result;
+    }
+    public void OnDrawGizmos()
+    {
+        
+    }
     public override void OnStart()
     {
+     
     }
 
     public override void OnEnd()

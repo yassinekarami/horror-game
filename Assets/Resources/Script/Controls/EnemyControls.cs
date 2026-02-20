@@ -5,11 +5,15 @@ using UnityEngine.Rendering;
 
 public class EnemyControls : MonoBehaviour
 {
-    public EnemyIsHitEvent enemyIsHitEvent;
-    public LampExplodeAtPositionEvent lampExplodeAtPositionEvent;
+    private float enemyHealth = 100f;
 
-    [SerializeField] private BehaviorGraphAgent graphAgent;
-    private BlackboardVariable<NavMeshAgent> navMeshAgent;
+    [Header("Received event")]
+    public LampExplodeAtPositionEvent lampExplodeAtPositionEvent;
+    public PlayerShotAtPositionEvent playerShotAtPositionEvent;
+
+    [Header("AI Behavior Graph variables")]
+    [SerializeField] BehaviorGraphAgent graphAgent;
+    [SerializeField] BlackboardVariable<NavMeshAgent> navMeshAgent;
 
     private void Start()
     {
@@ -17,19 +21,19 @@ public class EnemyControls : MonoBehaviour
 
         if (graphAgent.GetVariable("NavMeshAgent", out navMeshAgent)) {
             lampExplodeAtPositionEvent.Event += OnLampExplode;
+            playerShotAtPositionEvent.Event += OnPlayerShotAtPosition;
+
         }
-        enemyIsHitEvent.Event += EnemyIsHitEvent;
    
     }
 
     private void OnDestroy()
     {
-        enemyIsHitEvent.Event -= EnemyIsHitEvent;
         if(navMeshAgent != null)
         {
             lampExplodeAtPositionEvent.Event -= OnLampExplode;
+            playerShotAtPositionEvent.Event -= OnPlayerShotAtPosition;
         }
- 
     }
     private void EnemyIsHitEvent(GameObject value0)
     {
@@ -40,7 +44,12 @@ public class EnemyControls : MonoBehaviour
     {
         Debug.Log("Enemy received lamp explode event  " + position);
         navMeshAgent.Value.SetDestination(position);
+    }
 
+    private void OnPlayerShotAtPosition(Vector3 position)
+    {
+        Debug.Log("Enemy received player shot at position event  " + position);
+        navMeshAgent.Value.SetDestination(position);
     }
 
     /// <summary>
@@ -49,14 +58,15 @@ public class EnemyControls : MonoBehaviour
     /// <returns>The first GameObject with the tag "Player" found within range, or null if none are found.</returns>
     public GameObject DetectedGameObject()
     {
-        //Collider[] collider = Physics.OverlapSphere(transform.position, detectTargetRange);
-        //for (int i = 0; i < collider.Length; i++)
-        //{
-        //    if (collider[i].gameObject.tag == "Player")
-        //    {   Debug.Log("Player Detected");
-        //        return collider[i].gameObject;
-        //    }
-        //}
+        Collider[] collider = Physics.OverlapSphere(transform.position, 100f);
+        for (int i = 0; i < collider.Length; i++)
+        {
+            if (collider[i].gameObject.tag == "Player")
+            {
+                Debug.Log("Player Detected");
+                return collider[i].gameObject;
+            }
+        }
         return null;
     }
 
@@ -72,6 +82,23 @@ public class EnemyControls : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Reduces the enemy's health by 50 and logs the updated health value.
+    /// </summary>
+    public void DecreaseHealth()
+    {
+        enemyHealth -= 50f;
+        Debug.Log("Enemy health decreased: " + enemyHealth);
+    }
+
+    /// <summary>
+    /// Determines whether the enemy's health is zero or less.
+    /// </summary>
+    /// <returns>True if the enemy is dead; otherwise, false.</returns>
+    public bool IsDead()
+    {
+        return enemyHealth <= 0f;
+    }
 
     //GIZMO
     private void OnDrawGizmos()
