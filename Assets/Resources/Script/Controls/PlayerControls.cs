@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
+    private bool isDead = false;
     [Header("Components")]
     CharacterController characterController;
     AudioSource playerAudioSource;
@@ -60,12 +61,15 @@ public class PlayerControls : MonoBehaviour
     /// <param name="value0">The player GameObject to be destroyed.</param>
     private void KillThePlayer(GameObject value0)
     {
-        Debug.Log("Enemy killed target event triggered - Test_Event "+value0.name);
+        if (isDead) return;
+
         StartCoroutine(PlayerIsDead(value0));
+
     }
 
     IEnumerator PlayerIsDead(GameObject value0) 
     {
+        isDead = true;
         AudioClip audioToPlay = sounds.GetAudioClipAtIndex(3);
         sounds.PlayAudioClip(playerAudioSource, audioToPlay);
         yield return new WaitForSeconds(audioToPlay.length +1);

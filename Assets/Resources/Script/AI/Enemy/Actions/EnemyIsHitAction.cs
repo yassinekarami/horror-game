@@ -10,12 +10,15 @@ public partial class EnemyIsHitAction : Action
 {
     [SerializeReference] public BlackboardVariable<EnemyControls> Controls;
     [SerializeReference] public BlackboardVariable<EnemyState> State;
-
     protected override Status OnStart()
     {
-        Debug.Log("EnemyIsHitAction started");
+        if (Controls.Value.IsDead())
+        {
+            Debug.LogError("EnemyIsHitAction : enemy is already dead");
+            return Status.Failure;
+        }
         Controls.Value.DecreaseHealth();
-        State.Value = Controls.Value.IsDead() ? EnemyState.Dead : EnemyState.Hit;
+        State.Value = Controls.Value.IsDead() ? EnemyState.Dead : EnemyState.Trigger;
         return Status.Success;
     }
 

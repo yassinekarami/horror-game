@@ -28,23 +28,27 @@ public partial class EnemyPatrolAction : Action
 
     private bool Patrols()
     {
-        
         if (NavMesh != null && Waypoints.Value != null && Waypoints.Value.Count > 0)
         {
-      
-            List<GameObject> waypoints = Waypoints.Value;
-            Vector3 currentNavMeshDestination = NavMesh.Value.destination;
-            Vector3 newNavMeshDestination ;
-            do
-            {
-                newNavMeshDestination = waypoints[Random.Range(0, waypoints.Count - 1)].transform.position;
-            } 
-            while (currentNavMeshDestination == newNavMeshDestination);
-
-            NavMesh.Value.SetDestination(newNavMeshDestination);
             if (NavMesh.Value.remainingDistance <= NavMesh.Value.stoppingDistance)
             {
-                return true;
+                Debug.Log("Waypoints count " + Waypoints.Value.Count);
+                List<GameObject> waypoints = Waypoints.Value;
+                Vector3 currentNavMeshDestination = NavMesh.Value.destination;
+                Vector3 newNavMeshDestination;
+                do
+                {
+                    int randomIndex = Random.Range(0, waypoints.Count);
+                    Debug.Log("Random index " + randomIndex);
+                    newNavMeshDestination = waypoints[randomIndex].transform.position;
+                }
+                while (currentNavMeshDestination == newNavMeshDestination);
+
+                NavMesh.Value.SetDestination(newNavMeshDestination);
+                if (NavMesh.Value.remainingDistance <= NavMesh.Value.stoppingDistance)
+                {
+                    return true;
+                }
             }
         }        
         return false;

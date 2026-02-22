@@ -10,24 +10,32 @@ public partial class TargetIsVisibleCondition : Condition
     [SerializeReference] public BlackboardVariable<GameObject> Target;
     [SerializeReference] public BlackboardVariable<GameObject> Self;
 
+    private int characterLayerMask = LayerMask.NameToLayer("Character"); 
 
     public override bool IsTrue()
     {
      //   Debug.Log("Target "+ Target.Value.transform.position);
      //   Debug.Log("Self " + Self.Value.transform.position);
         bool result = false;
-        Ray ray = new Ray(Self.Value.transform.position, Target.Value.transform.position - Self.Value.transform.position);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 2))
+        if (Target.Value == null || Self.Value == null)
         {
-        
-            if (hitInfo.collider.gameObject != Target.Value)
+            result = false;
+        }
+        else
+        {
+            Ray ray = new Ray(Self.Value.transform.position, Target.Value.transform.position - Self.Value.transform.position);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 5, characterLayerMask))
             {
-                result = false;
-            }
-            else
-            {
-                Debug.Log("detected gameObject " + hitInfo.collider.gameObject.name);
-                result = true;
+
+                if (hitInfo.collider.gameObject != Target.Value)
+                {
+                    result = false;
+                }
+                else
+                {
+                    Debug.Log("detected gameObject " + hitInfo.collider.gameObject.name);
+                    result = true;
+                }
             }
         }
 

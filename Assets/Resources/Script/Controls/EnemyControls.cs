@@ -5,7 +5,9 @@ using UnityEngine.Rendering;
 
 public class EnemyControls : MonoBehaviour
 {
-    private float enemyHealth = 100f;
+    [Header("Enemy attributes")]
+    [SerializeField] private float enemyHealth = 100f;
+    [SerializeField] private float hearSoundRange = 2f;
 
     [Header("Received event")]
     public LampExplodeAtPositionEvent lampExplodeAtPositionEvent;
@@ -14,42 +16,83 @@ public class EnemyControls : MonoBehaviour
     [Header("AI Behavior Graph variables")]
     [SerializeField] BehaviorGraphAgent graphAgent;
     [SerializeField] BlackboardVariable<NavMeshAgent> navMeshAgent;
+    [SerializeField] BlackboardVariable<EnemyState> enemyState;
+    [SerializeField] BlackboardVariable<float> NavMeshAgentSpeed;
 
     private void Start()
     {
         graphAgent = GetComponent<BehaviorGraphAgent>();
-
+        if (graphAgent.GetVariable("State", out enemyState) && graphAgent.GetVariable("NavMeshAgentSpeed", out NavMeshAgentSpeed))
+        {
+            enemyState.OnValueChanged += OnStateValueChanged;
+        }
         if (graphAgent.GetVariable("NavMeshAgent", out navMeshAgent)) {
             lampExplodeAtPositionEvent.Event += OnLampExplode;
             playerShotAtPositionEvent.Event += OnPlayerShotAtPosition;
-
         }
-   
     }
 
     private void OnDestroy()
     {
-        if(navMeshAgent != null)
+        if (enemyState != null)
+        {
+            enemyState.OnValueChanged -= OnStateValueChanged;
+        }
+        if (navMeshAgent != null)
         {
             lampExplodeAtPositionEvent.Event -= OnLampExplode;
             playerShotAtPositionEvent.Event -= OnPlayerShotAtPosition;
         }
     }
-    private void EnemyIsHitEvent(GameObject value0)
+    /// <summary>
+    /// Handles the event when a lamp explodes by logging the event and setting the agent's destination to the explosion
+    /// position.
+    /// </summary>
+    /// <param name="position">The world position where the lamp exploded.</param>
+
+    private void OnLampExplode(Vector3 eventPosition)
     {
-        Debug.Log("enemy is hit event triggered - Test_Event " + value0.name + " hit by ");
+        Debug.Log("Enemy received lamp explode event " + eventPosition);
+        Debug.Log(Vector3.Distance(transform.position, eventPosition));
+        if (Vector3.Distance(transform.position, eventPosition) <= hearSoundRange)
+        {
+            
+        }
     }
 
-    private void OnLampExplode(Vector3 position)
+    /// <summary>
+    /// Handles the event when the player shoots at a position by logging the event and setting the agent's destination to the
+    /// </summary>
+    /// <param name="position">The world position where the player shot.</param>
+    private void OnPlayerShotAtPosition(Vector3 eventPosition)
     {
-        Debug.Log("Enemy received lamp explode event  " + position);
-        navMeshAgent.Value.SetDestination(position);
+        Debug.Log("Enemy received player shot at position event  " + eventPosition);
+        if (Vector3.Distance(transform.position, eventPosition) <= hearSoundRange)
+        {
+            enemyState.Value = EnemyState.Trigger;
+        }
     }
 
-    private void OnPlayerShotAtPosition(Vector3 position)
+    /// <summary>
+    /// Change the navMeshAgent speed according to the enemy state
+    /// </summary>
+    private void OnStateValueChanged()
     {
-        Debug.Log("Enemy received player shot at position event  " + position);
-        navMeshAgent.Value.SetDestination(position);
+       switch (enemyState.Value)
+       {
+            case EnemyState.Idle:
+                NavMeshAgentSpeed.Value = 0f;
+                break;
+            case EnemyState.Patrol:
+                NavMeshAgentSpeed.Value = 3.5f;
+                break;
+            case EnemyState.Chase:
+                NavMeshAgentSpeed.Value = 5f;
+                break;
+            case EnemyState.Attack:
+                NavMeshAgentSpeed.Value = 0f;
+                break;
+       }
     }
 
     /// <summary>
@@ -103,10 +146,7 @@ public class EnemyControls : MonoBehaviour
     //GIZMO
     private void OnDrawGizmos()
     {
- //       Gizmos.color = Color.red;
- //       Gizmos.DrawWireSphere(transform.position, attackRange);
-
- //       Gizmos.color = Color.green;
- //       Gizmos.DrawWireSphere(transform.position, detectTargetRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, hearSoundRange);
     }
 }
