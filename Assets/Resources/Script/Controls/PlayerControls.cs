@@ -229,15 +229,23 @@ public class PlayerControls : MonoBehaviour
     /// <param name="isMoving"></param>
     private void PlayMovementAudio(bool isMoving)
     {
-        if (playerAudioSource == null || !isMoving) return;
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (playerAudioSource == null) return;
+        else if (!isMoving)
         {
-            sounds.PlayAudioClipAtIndex(playerAudioSource, 0);
+            sounds.StopAudioClip(playerAudioSource);
         }
         else
         {
-            sounds.PlayAudioClipAtIndex(playerAudioSource, 1);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {   
+                sounds.PlayAudioClipAtIndex(playerAudioSource, 0);
+            }
+            else
+            {
+                sounds.PlayAudioClipAtIndex(playerAudioSource, 1);
+            }
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2083061527273408303}
   - component: {fileID: 4495337902505916466}
   - component: {fileID: 1201853884113680888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CinemachineCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
   NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 1.5
-  FrequencyGain: 1
+  AmplitudeGain: 1
+  FrequencyGain: 0.5
   m_NoiseOffsets: {x: 743.48, y: -26.611206, z: 187.41599}
 --- !u!114 &1201853884113680888
 MonoBehaviour:
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 1472776206158199407}
   - component: {fileID: 6119423154133136141}
   - component: {fileID: 5931329443214245652}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 4923808836210687538}
   - component: {fileID: 720079949829213541}
   - component: {fileID: 5788336658517728339}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TorchHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,14 +394,14 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3639830681800368244}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 12
   m_Type: 0
   m_Color: {r: 0.9056604, g: 0.5795498, b: 0, a: 1}
   m_Intensity: 3.8
   m_Range: 10
-  m_SpotAngle: 69.73486
-  m_InnerSpotAngle: 24.240343
+  m_SpotAngle: 117.13904
+  m_InnerSpotAngle: 42.016888
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
     m_Type: 0
@@ -504,7 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7259792087939224618}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,10 +542,10 @@ GameObject:
   - component: {fileID: 1422984053868880102}
   - component: {fileID: 6615391338846005432}
   - component: {fileID: 1938912144138552505}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -690,9 +690,7 @@ MonoBehaviour:
   isRunning: 0
   midFear: 50
   maxFear: 100
-  runningAudioClip: {fileID: 8300000, guid: 58ac87889e8252744aceaba33a7cdda3, type: 3}
-  walkingAudioClip: {fileID: 8300000, guid: e821f1c21c4d7d144a997ef946eaac18, type: 3}
-  takingPillsAudioClip: {fileID: 8300000, guid: b6a0cbe042118fc4f8f3b10b1c16347d, type: 3}
+  sounds: {fileID: 11400000, guid: 72e14ea8cbdf3a74b978337ded4685d1, type: 2}
   panelScript: {fileID: 0}
   inventory: {fileID: 11400000, guid: fcfedbc7457663a4e98792842888093e, type: 2}
   enemyKilledTargetEvent: {fileID: 11400000, guid: ef9e2c7a6bf4d854382175489848ab57, type: 2}
@@ -806,7 +804,7 @@ GameObject:
   - component: {fileID: 8455225518459972164}
   - component: {fileID: 3830366071270132492}
   - component: {fileID: 1090421955546374807}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AimAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,6 +916,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: WFX_MF FPS RIFLE3
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8eaaa4f553116f44b8459bc24201c514, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 8eaaa4f553116f44b8459bc24201c514, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 8eaaa4f553116f44b8459bc24201c514, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 8eaaa4f553116f44b8459bc24201c514, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8eaaa4f553116f44b8459bc24201c514, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -981,9 +995,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7171912342513378435}
     m_Modifications:
+    - target: {fileID: 1362374548099114, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620780442430432, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1642252848606250, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1694449805434718, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: m_Name
       value: M1911
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694449805434718, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748277932983872, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1765096765920448, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929811568968954, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4952727429218122, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
       propertyPath: m_LocalScale.x
@@ -1068,13 +1110,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7171912342513378435}
     m_Modifications:
+    - target: {fileID: 1324608018887474, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1452442627303592, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1487774384131766, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
       propertyPath: m_Name
       value: AK74
       objectReference: {fileID: 0}
     - target: {fileID: 1487774384131766, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487774384131766, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927369336514790, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4519716788627816, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
       propertyPath: m_LocalScale.x

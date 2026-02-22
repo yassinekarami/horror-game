@@ -87,7 +87,7 @@ public class EnemyControls : MonoBehaviour
                 NavMeshAgentSpeed.Value = 3.5f;
                 break;
             case EnemyState.Chase:
-                NavMeshAgentSpeed.Value = 5f;
+                NavMeshAgentSpeed.Value = 0f;
                 break;
             case EnemyState.Attack:
                 NavMeshAgentSpeed.Value = 0f;

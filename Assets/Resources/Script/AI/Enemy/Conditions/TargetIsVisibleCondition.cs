@@ -10,7 +10,6 @@ public partial class TargetIsVisibleCondition : Condition
     [SerializeReference] public BlackboardVariable<GameObject> Target;
     [SerializeReference] public BlackboardVariable<GameObject> Self;
 
-    private int characterLayerMask = LayerMask.NameToLayer("Character"); 
 
     public override bool IsTrue()
     {
@@ -24,9 +23,8 @@ public partial class TargetIsVisibleCondition : Condition
         else
         {
             Ray ray = new Ray(Self.Value.transform.position, Target.Value.transform.position - Self.Value.transform.position);
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 5, characterLayerMask))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 8))
             {
-
                 if (hitInfo.collider.gameObject != Target.Value)
                 {
                     result = false;
@@ -48,7 +46,6 @@ public partial class TargetIsVisibleCondition : Condition
     }
     public override void OnStart()
     {
-     
     }
 
     public override void OnEnd()

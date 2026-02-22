@@ -64,4 +64,12 @@ public class SoundsScriptableObject : ScriptableObject
             }
         }
     }
+
+    public void StopAudioClip(AudioSource source)
+    {
+        if (source != null && source.isPlaying)
+        {
+            source.Stop();
+        }
+    }
 }
