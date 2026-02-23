@@ -15,6 +15,7 @@ public partial class EnemyIsHitAction : Action
         if (Controls.Value.IsDead())
         {
             Debug.LogError("EnemyIsHitAction : enemy is already dead");
+            State.Value = EnemyState.Dead;
             return Status.Failure;
         }
         Controls.Value.DecreaseHealth();

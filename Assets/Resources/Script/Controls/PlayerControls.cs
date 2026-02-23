@@ -120,7 +120,7 @@ public class PlayerControls : MonoBehaviour
         float additionalValue = isRunning ? 0.5f : 0;
         // increase fear over time
 
-        inventory.updateFearAndNotifyObservers(Mathf.Clamp((inventory.fear + Time.deltaTime), 0f, maxFear));
+        inventory.updateFearAndNotifyObservers(Mathf.Clamp((inventory.fear + Time.deltaTime *2f), 0f, maxFear));
         if (inventory.fear >= maxFear)
         {
             cinemachineBasicMultiChannelPerlin.AmplitudeGain = 2f;

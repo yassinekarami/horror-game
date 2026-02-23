@@ -19,7 +19,7 @@ public class TorchControls : MonoBehaviour
     {
         if (torchLight.enabled && inventory.torchBattery > 0)
         {
-            inventory.updateTorchBatteryAndNotifyObservers(Time.deltaTime);
+            inventory.updateTorchBatteryAndNotifyObservers(Time.deltaTime * 1.5f);
         }
         if (inventory.torchBattery <= 0)
         {
