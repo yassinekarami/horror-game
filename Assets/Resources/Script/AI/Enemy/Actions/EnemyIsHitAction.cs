@@ -13,10 +13,10 @@ public partial class EnemyIsHitAction : Action
     protected override Status OnStart()
     {
         if (Controls.Value.IsDead())
-        {
-            Debug.LogError("EnemyIsHitAction : enemy is already dead");
-            State.Value = EnemyState.Dead;
-            return Status.Failure;
+            {
+                Debug.LogError("EnemyIsHitAction : enemy is already dead");
+                State.Value = EnemyState.Dead;
+                return Status.Failure;
         }
         Controls.Value.DecreaseHealth();
         State.Value = Controls.Value.IsDead() ? EnemyState.Dead : EnemyState.Trigger;

@@ -40,6 +40,7 @@ public class PlayerControls : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Cursor.visible = false;
         cameraHolder = GameObject.Find("CameraHolder");
         gunHolder = GameObject.Find("GunHolder");
         torchHolder = GameObject.Find("TorchHolder");
@@ -123,18 +124,18 @@ public class PlayerControls : MonoBehaviour
         inventory.updateFearAndNotifyObservers(Mathf.Clamp((inventory.fear + Time.deltaTime *2f), 0f, maxFear));
         if (inventory.fear >= maxFear)
         {
-            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 2f;
-            cinemachineBasicMultiChannelPerlin.FrequencyGain = 2.5f + additionalValue;
-        }
-        else if (inventory.fear >= midFear)
-        {
             cinemachineBasicMultiChannelPerlin.AmplitudeGain = 1.5f;
             cinemachineBasicMultiChannelPerlin.FrequencyGain = 1f + additionalValue;
         }
+        else if (inventory.fear >= midFear)
+        {
+            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 0.75f;
+            cinemachineBasicMultiChannelPerlin.FrequencyGain = 0.5f + additionalValue;
+        }
         else
         {
-            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 1f;
-            cinemachineBasicMultiChannelPerlin.FrequencyGain = 0.5f + additionalValue;
+            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 0.5f;
+            cinemachineBasicMultiChannelPerlin.FrequencyGain = 0.25f + additionalValue;
         }
     }
 
