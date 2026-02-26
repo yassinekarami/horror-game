@@ -12,6 +12,7 @@ public class EnemyControls : MonoBehaviour
     [Header("Received event")]
     public LampExplodeAtPositionEvent lampExplodeAtPositionEvent;
     public PlayerShotAtPositionEvent playerShotAtPositionEvent;
+    public PlayerEnabledElectricGeneratorEvent playerEnabledElectricGenerator;
 
     [Header("AI Behavior Graph variables")]
     [SerializeField] BehaviorGraphAgent graphAgent;
@@ -31,6 +32,7 @@ public class EnemyControls : MonoBehaviour
             lampExplodeAtPositionEvent.Event += OnLampExplode;
             playerShotAtPositionEvent.Event += OnPlayerShotAtPosition;
         }
+        playerEnabledElectricGenerator.Event += OnPlayerEnabledElectricGenerator;
     }
 
     private void OnDestroy()
@@ -44,6 +46,7 @@ public class EnemyControls : MonoBehaviour
             lampExplodeAtPositionEvent.Event -= OnLampExplode;
             playerShotAtPositionEvent.Event -= OnPlayerShotAtPosition;
         }
+        playerEnabledElectricGenerator.Event -= OnPlayerEnabledElectricGenerator;
     }
     /// <summary>
     /// Handles the event when a lamp explodes by logging the event and setting the agent's destination to the explosion
@@ -60,6 +63,17 @@ public class EnemyControls : MonoBehaviour
             hearSoundRange += 0.5f;
             navMeshAgent.Value.SetDestination(eventPosition);
         }
+    }
+
+    /// <summary>
+    /// Handles the event when the player enables the electric generator by updating the enemy state and increasing the
+    /// chase range.
+    /// </summary>
+    private void OnPlayerEnabledElectricGenerator(GameObject gameObject)
+    {
+        Debug.Log("Enemy received player enabled electric generator event");
+        enemyState.Value = EnemyState.Trigger;
+        ChaseRange.Value += 0.5f;
     }
 
     /// <summary>

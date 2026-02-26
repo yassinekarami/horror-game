@@ -14,7 +14,7 @@ public partial class EnemyChaseAction : Action
 
     protected override Status OnStart()
     {
-        if (Agent != null && Target != null)
+        if (Agent != null && Target != null && Target.Value != null)
         {
             Agent.Value.SetDestination(Target.Value.transform.position);
         }

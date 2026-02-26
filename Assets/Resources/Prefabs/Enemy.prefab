@@ -501,6 +501,10 @@ PrefabInstance:
       propertyPath: lampExplodeAtPositionEvent
       value: 
       objectReference: {fileID: 11400000, guid: 45c70b3f8330ee84782f768fed5b22fc, type: 2}
+    - target: {fileID: 1760679023758453637, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: playerEnabledElectricGenerator
+      value: 
+      objectReference: {fileID: 11400000, guid: 313684875f89c36409f174e40524a0b1, type: 2}
     - target: {fileID: 3490026887102112448, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1283,7 +1287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -42.8
+      value: 12.6
       objectReference: {fileID: 0}
     - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1291,7 +1295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 495.1
+      value: 324.29
       objectReference: {fileID: 0}
     - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
       propertyPath: m_LocalRotation.w

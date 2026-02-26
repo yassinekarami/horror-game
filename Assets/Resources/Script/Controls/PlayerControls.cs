@@ -1,10 +1,12 @@
 using System.Collections;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
     private bool isDead = false;
+    private bool enemyTouchedPlayer = false;
     [Header("Components")]
     CharacterController characterController;
     AudioSource playerAudioSource;
@@ -40,7 +42,7 @@ public class PlayerControls : MonoBehaviour
     public EnemyKilledTargetEvent enemyKilledTargetEvent;
     public LampExplodeAtPositionEvent lampExplodeEventChanel;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Start is called once before the first execution of Update after the MonoBehavior is created
     void Start()
     {
         Cursor.visible = false;
@@ -65,12 +67,19 @@ public class PlayerControls : MonoBehaviour
     /// <param name="value0">The player GameObject to be destroyed.</param>
     private void KillThePlayer(GameObject value0)
     {
+        if (!enemyTouchedPlayer) return;
         if (isDead) return;
-
+ 
         StartCoroutine(PlayerIsDead(value0));
 
     }
 
+    /// <summary>
+    /// Handles player death by playing a death sound, waiting for its duration, and destroying the specified
+    /// GameObject.
+    /// </summary>
+    /// <param name="value0">The GameObject to destroy upon player death.</param>
+    /// <returns>An IEnumerator for coroutine execution.</returns>
     IEnumerator PlayerIsDead(GameObject value0) 
     {
         isDead = true;
@@ -80,7 +89,10 @@ public class PlayerControls : MonoBehaviour
         Destroy(value0);
     }
 
-
+    /// <summary>
+    /// Handles the lamp explosion event by increasing the player's fear level and notifying observers.
+    /// </summary>
+    /// <param name="position">The position where the lamp explosion occurs.</param>
     private void OnLampExplode(Vector3 position)
     {
         Debug.Log("Lamp explode event triggered - Test_Event");
@@ -95,7 +107,8 @@ public class PlayerControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        characterController.Move(GetMovementDirection(out isMoving) * GetCurrentSpeed(out isRunning) * Time.deltaTime);
+        float speed = updateSpeedRegardingFear(GetCurrentSpeed(out isRunning));
+        characterController.Move(GetMovementDirection(out isMoving) * speed * Time.deltaTime);
         RotatePlayer();
         LookUpAndDown();
         PlayMovementAudio(isMoving);
@@ -122,8 +135,7 @@ public class PlayerControls : MonoBehaviour
     private void UpdateCameraPerlinAmplitudeAndFrequency(bool isRunning)
     {
         float additionalValue = isRunning ? 0.5f : 0;
-        // increase fear over time
-
+ 
         inventory.updateFearAndNotifyObservers(Mathf.Clamp((inventory.fear + Time.deltaTime *4f), 0f, maxFear));
         if (inventory.fear >= maxFear)
         {
@@ -245,6 +257,34 @@ public class PlayerControls : MonoBehaviour
         return isRunning ? runSpeed : walkSpeed;
     }
 
+    /// <summary>
+    /// Adjusts the speed based on the current fear level in the inventory.
+    /// </summary>
+    /// <param name="currentSpeed">The current speed value to be modified.</param>
+    /// <returns>The adjusted speed according to the fear thresholds.</returns>
+    private float updateSpeedRegardingFear(float currentSpeed)
+    {
+        if (inventory.fear >= maxFear)
+        {
+            return currentSpeed * 0.5f;
+        }
+        else if (inventory.fear >= upperMidFear)
+        {
+            return currentSpeed * 0.75f;
+        }
+        else if (inventory.fear >= midFear)
+        {
+            return currentSpeed * 0.85f;
+        }
+        else if (inventory.fear >= lowerMidFear)
+        {
+            return currentSpeed * 0.95f;
+        }
+        else
+        {
+            return currentSpeed;
+        }
+    }
 
     /// <summary>
     /// plays movement audio based on whether the player is moving and if they are running or walking
@@ -271,6 +311,11 @@ public class PlayerControls : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Handles trigger events by updating the inventory when colliding with a first aid item and marking the player as
+    /// touched when colliding with an enemy.
+    /// </summary>
+    /// <param name="other">The collider that entered the trigger.</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Firstaid"))
@@ -278,6 +323,20 @@ public class PlayerControls : MonoBehaviour
             inventory.updateMedicineByValueAndNotifyObservers(1);
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("Enemy"))
+        {
+            enemyTouchedPlayer = true;
+        }
+    }
+
+    /// <summary>
+    /// Resets the enemyTouchedPlayer flag when a collider exits the trigger.
+    /// </summary>
+    /// <param name="other">The collider that exited the trigger.</param>
+    private void OnTriggerExit(Collider other)
+    {
+        enemyTouchedPlayer = false;
     }
 
 }
