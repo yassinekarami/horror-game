@@ -20,9 +20,6 @@ public class GunControls : MonoBehaviour
     public AudioClip gunShootAudioClip;
     public AudioClip emptyGunShootAudioClip;
 
-    [Header("Event")]
-    public EnemyIsHitEvent enemyIsHitEvent;
-
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,16 +49,14 @@ public class GunControls : MonoBehaviour
         if (inventory.ammunition > 0)
         {
             inventory.updateAmmunitionsByValueAndNotifyObservers(-1);
-            Ray ray = Camera.main.ScreenPointToRay(
-                new Vector2(Screen.width / 2f, Screen.height / 2f)
-                );
+            Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
             if (Physics.Raycast(ray, out hitInfo, 100f))
             {   Debug.Log("Hit: " + hitInfo.transform.gameObject.name);
                 if (hitInfo.transform.gameObject.tag.Equals("Enemy"))
                 {
                     // enemy was hit
                     Debug.Log("Enemy hit: " + hitInfo.transform.gameObject.name);
-                    enemyIsHitEvent.SendEventMessage(hitInfo.transform.gameObject);
+                    hitInfo.transform.gameObject.GetComponent<EnemyControls>().ChangeCurrentStateToHitState();
                 }
             }
             PlayAudioClip(gunAudioSource, gunShootAudioClip);

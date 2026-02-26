@@ -18,6 +18,7 @@ public class EnemyControls : MonoBehaviour
     [SerializeField] BlackboardVariable<NavMeshAgent> navMeshAgent;
     [SerializeField] BlackboardVariable<EnemyState> enemyState;
     [SerializeField] BlackboardVariable<float> NavMeshAgentSpeed;
+    [SerializeField] BlackboardVariable<float> ChaseRange;
 
     private void Start()
     {
@@ -56,7 +57,8 @@ public class EnemyControls : MonoBehaviour
         Debug.Log(Vector3.Distance(transform.position, eventPosition));
         if (Vector3.Distance(transform.position, eventPosition) <= hearSoundRange)
         {
-            
+            hearSoundRange += 0.5f;
+            navMeshAgent.Value.SetDestination(eventPosition);
         }
     }
 
@@ -124,7 +126,13 @@ public class EnemyControls : MonoBehaviour
         //  return distance <= attackRange;
         return false;
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    public void ChangeCurrentStateToHitState()
+    {
+        enemyState.Value = EnemyState.Hit;
+    }
     /// <summary>
     /// Reduces the enemy's health by 50 and logs the updated health value.
     /// </summary>
@@ -147,6 +155,9 @@ public class EnemyControls : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, ChaseRange);
+
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, hearSoundRange);
     }
 }

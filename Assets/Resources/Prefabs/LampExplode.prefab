@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6160971062180528845}
   - component: {fileID: 1170546906750410093}
   - component: {fileID: 7911413593894909665}
-  - component: {fileID: 6399358930626751214}
+  - component: {fileID: 4208484941178636087}
   m_Layer: 0
   m_Name: LampExplode
   m_TagString: Untagged
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8562410396813929206}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.VisualScripting.Core::Unity.VisualScripting.Variables
   _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"genericEventBroadcaster","value":{"$type":"Unity.VisualScripting.Unknown"},"typeHandle":{"Identification":"GenericEventBroadcaster,
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"genericEventBroadcaster","value":{"$type":"Unity.VisualScripting.Unknown"},"typeHandle":{"Identification":"VirtualScriptEventBroadcaster,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
 --- !u!114 &6160971062180528845
@@ -282,7 +282,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6399358930626751214
+--- !u!114 &4208484941178636087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8562410396813929206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a77305a94b48da54895efd7d94e8617d, type: 3}
+  m_Script: {fileID: 11500000, guid: a3819c3f81a8f8c4c9e7bca183e05b4d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GenericEventBroadcaster
-  eventChannel: {fileID: 11400000, guid: 45c70b3f8330ee84782f768fed5b22fc, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::Vector3EventBroadcaster
+  genericScriptableObject: {fileID: 11400000, guid: 45c70b3f8330ee84782f768fed5b22fc, type: 2}

@@ -21,9 +21,12 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private float walkSpeed = 3.0f;
     [SerializeField] private bool isMoving;
     [SerializeField] private bool isRunning;
+    [SerializeField] private float xRotation = 0f;
 
     [Header("Fear Settings")]
+    [SerializeField] private float lowerMidFear = 20;
     [SerializeField] private float midFear = 50f;
+    [SerializeField] private float upperMidFear = 80f;
     [SerializeField] private float maxFear = 100f;
 
 
@@ -121,21 +124,31 @@ public class PlayerControls : MonoBehaviour
         float additionalValue = isRunning ? 0.5f : 0;
         // increase fear over time
 
-        inventory.updateFearAndNotifyObservers(Mathf.Clamp((inventory.fear + Time.deltaTime *2f), 0f, maxFear));
+        inventory.updateFearAndNotifyObservers(Mathf.Clamp((inventory.fear + Time.deltaTime *4f), 0f, maxFear));
         if (inventory.fear >= maxFear)
         {
-            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 1.5f;
-            cinemachineBasicMultiChannelPerlin.FrequencyGain = 1f + additionalValue;
+            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 2.75f;
+            cinemachineBasicMultiChannelPerlin.FrequencyGain = 2.75f + additionalValue;
+        }
+        if (inventory.fear >= upperMidFear)
+        {
+            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 2.25f;
+            cinemachineBasicMultiChannelPerlin.FrequencyGain = 2.25f + additionalValue;
         }
         else if (inventory.fear >= midFear)
         {
-            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 0.75f;
-            cinemachineBasicMultiChannelPerlin.FrequencyGain = 0.5f + additionalValue;
+            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 2f;
+            cinemachineBasicMultiChannelPerlin.FrequencyGain = 2f + additionalValue;
+        }
+        else if (inventory.fear >= lowerMidFear)
+        {
+            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 1.5f;
+            cinemachineBasicMultiChannelPerlin.FrequencyGain = 1.5f + additionalValue;
         }
         else
         {
-            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 0.5f;
-            cinemachineBasicMultiChannelPerlin.FrequencyGain = 0.25f + additionalValue;
+            cinemachineBasicMultiChannelPerlin.AmplitudeGain = 1f;
+            cinemachineBasicMultiChannelPerlin.FrequencyGain = 1f + additionalValue;
         }
     }
 
@@ -163,7 +176,7 @@ public class PlayerControls : MonoBehaviour
         {
             inventory.updateMedicineByValueAndNotifyObservers(-1);
             sounds.PlayAudioClipAtIndex(playerAudioSource, 2);
-            inventory.updateFearByValueAndNotifyObservers(-30f);
+            inventory.updateFearByValueAndNotifyObservers(-50f);
         }
     }
 
@@ -197,12 +210,21 @@ public class PlayerControls : MonoBehaviour
     /// <summary>
     /// Performs look up and down operations.
     /// </summary>
+
     private void LookUpAndDown()
     {
-        float mouseY = Input.GetAxis("Mouse Y") * 5f * 100f * Time.deltaTime;
-        cameraHolder.transform.Rotate(Vector3.left * mouseY);
-        gunHolder.transform.Rotate(Vector3.left * mouseY);
-        torchHolder.transform.Rotate(Vector3.left * mouseY);
+        float mouseY = Input.GetAxis("Mouse Y") * 500f * Time.deltaTime;
+
+        // Inverser si nécessaire
+        xRotation -= mouseY;
+
+        // Clamp
+        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+
+        // Appliquer rotation
+        cameraHolder.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        gunHolder.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        torchHolder.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
     /// <summary>
     /// Unsubscribes the KillThePlayer handler from the enemyKilledTargetEvent when the object is destroyed.
